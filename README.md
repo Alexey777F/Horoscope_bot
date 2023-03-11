@@ -33,4 +33,4 @@
  * Run the main.py file.
 
 ## Как работает - How does it works
-  ![cosmo_bot](Horoscope.gif)
+  ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/Horoscope.gif)

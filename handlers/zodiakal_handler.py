@@ -1,5 +1,5 @@
 from aiogram.types import CallbackQuery, Message
-from keyboard.keyboard import keyboard
+from keyboard.keyboard import keyboard, menu_button
 from config.config import zodiaks, dates, dp, bot, menu, space_list
 from request.request import get_url, get_data, get_response
 # from photos_dark.photo_redactor import abs_path, image_redactor
@@ -61,8 +61,36 @@ async def check_birthday(message: Message, state: FSMContext):
     else:
         await message.reply("Выберите дату кнопкой 📱")
 
+@dp.callback_query_handler(state=Zodiacal.date_name, text=["Сегодня 📆", "Завтра 📆", "Неделя 📆"])
+async def request_answer(call: CallbackQuery, state: FSMContext):
+    """Колбек-хендлер который ловит кнопку из инлайн клавиатуры с выбором периода"""
+    # Ловим колбэк от нажатия кнопки
+    date = call.data
+    # Сохраняем в машину состояний данные
+    async with state.proxy() as user_data:
+        user_data["Дата"] = dates()[date]
+    # Получаем url для передачи в запрос
+    url = get_url("prediction", user_data["Знак зодиака"], user_data["Дата"])
+    # Получаем запрос(список с нашим текстом из сайта)
+    request = get_data(get_response(url))
+    await bot.edit_message_reply_markup(
+        chat_id=call.from_user.id,
+        message_id=call.message.message_id,
+        reply_markup=None
+    )
+    await call.message.answer(f"Вы выбрали {date.lower()}")
+    # вариант отправки отдельно картинки и отдельно текст
+    # показался мне более читабельным по сравнению со вторым
+    # Отправляем картинку из папки
+    await call.message.answer_photo(open(f"photos_light/{user_data['Знак зодиака']}.jpeg", "rb"))
+    # Отправляем страницу текста с пагинацией
+    await call.message.answer("\n".join(request).replace("&ndash;", " ").replace("&nbsp;", " "), reply_markup=menu_button())
+    # Переключаемся на следующее состояние
+    await Zodiacal.next()
+    await call.answer()
 
-@dp.callback_query_handler(state=Zodiacal.date_name, text=[key for key in dates().keys()])
+
+@dp.callback_query_handler(state=Zodiacal.date_name, text=["Месяц 📆", "Год 📆"])
 async def request_answer(call: CallbackQuery, state: FSMContext):
     """Колбек-хендлер который ловит кнопку из инлайн клавиатуры с выбором периода"""
     # Ловим колбэк от нажатия кнопки
@@ -135,11 +163,6 @@ async def pagination_callback(call: CallbackQuery, state: FSMContext):
     # Отлавливаем команду "Завершить просмотр", чтобы завершить машинное состояние в данном разделе
     # и чтобы мы могли переключиться на другой раздел
     elif call.data == "Меню":
-        # Удаляем текст с пагинацией
-        await bot.delete_message(
-            call.message.chat.id,
-            message_id=call.message.message_id
-        )
         # Завершаем и сбрасываем все состояния машины чтобы можно было переключится на другой раздел или выбрать тот же
         await state.finish()
         await call.message.answer("Узнайте что говорят звёзды и приготовила для Вас судьба✨💫🌟\n\n",

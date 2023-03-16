@@ -3,12 +3,13 @@ from dotenv import load_dotenv, find_dotenv
 from os import getenv
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from values import TG_TOKEN
 
 
-if not find_dotenv():
-    exit('Переменные окружения не загружены т.к отсутствует файл .env')
-else:
-    load_dotenv()
+# if not find_dotenv():
+#     exit('Переменные окружения не загружены т.к отсутствует файл .env')
+# else:
+#     load_dotenv()
 
 
 bot_token = getenv('TG_TOKEN')
@@ -63,7 +64,7 @@ def choice_zodiac() -> Dict:
 
 def dates() -> Dict:
     """Функция-словарь для клавиатуры"""
-    date = {"Сегодня 📆": "today", "Завтра 📆 ": "tomorrow", "Неделя 📆 ": "week",
+    date = {"Сегодня 📆": "today", "Завтра 📆": "tomorrow", "Неделя 📆": "week",
             "Месяц 📆": "month", "Год 📆": "year"}
     return date
 

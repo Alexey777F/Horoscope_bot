@@ -1,11 +1,11 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 import sqlite3
-
+from data import database
 
 def ensure_connection(func):
     def decorator(*args, **kwargs):
-        with sqlite3.connect('database.db') as conn:
+        with sqlite3.connect('data/database.db') as conn:
             result = func(conn, *args, **kwargs)
         return result
     return decorator

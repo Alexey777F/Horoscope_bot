@@ -11,7 +11,7 @@ from value import TG_TOKEN
 # else:
 #     load_dotenv()
 
-print(TG_TOKEN)
+
 bot_token = TG_TOKEN
 bot = Bot(token=bot_token)
 storage = MemoryStorage()

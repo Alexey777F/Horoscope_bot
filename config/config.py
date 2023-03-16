@@ -11,8 +11,8 @@ from value import TG_TOKEN
 # else:
 #     load_dotenv()
 
-
-bot_token = getenv('TG_TOKEN')
+print(TG_TOKEN)
+bot_token = TG_TOKEN
 bot = Bot(token=bot_token)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)

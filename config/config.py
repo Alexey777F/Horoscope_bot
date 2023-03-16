@@ -3,7 +3,7 @@ from dotenv import load_dotenv, find_dotenv
 from os import getenv
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from values import TG_TOKEN
+from value import TG_TOKEN
 
 
 # if not find_dotenv():

@@ -5,7 +5,7 @@ import sqlite3
 
 def ensure_connection(func):
     def decorator(*args, **kwargs):
-        with sqlite3.connect('sqlite:////../data/database.db') as conn:
+        with sqlite3.connect('../data/database.db') as conn:
             result = func(conn, *args, **kwargs)
         return result
     return decorator

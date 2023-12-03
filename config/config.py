@@ -3,19 +3,16 @@ from dotenv import load_dotenv, find_dotenv
 from os import getenv
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from value import TG_TOKEN
 
-
-# if not find_dotenv():
-#     exit('Переменные окружения не загружены т.к отсутствует файл .env')
-# else:
-#     load_dotenv()
-
-
-bot_token = TG_TOKEN
+bot_token = "6150164873:AAHr7sGYxOZTVnUTK4MFfdvsSuA22v55eus"
 bot = Bot(token=bot_token)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
+
+if not find_dotenv():
+    exit('Переменные окружения не загружены т.к отсутствует файл .env')
+else:
+    load_dotenv()
 
 
 def menu() -> Dict:

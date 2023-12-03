@@ -75,3 +75,7 @@ ___
   * Если не загружается посмотрите пожалуйста gif файл Horoscope.gif
   * If it does not load, please see the gif file Horoscope.gif
   ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/1.png)
+  ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/2.png)
+  ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/3.png)
+  ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/4.png)
+  ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/5.png)

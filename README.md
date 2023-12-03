@@ -72,8 +72,8 @@ ___
  * Bot runs from a container
  * 
 ## Как работает - How does it works
-  * Если не загружается посмотрите пожалуйста gif файл Horoscope.gif
-  * If it does not load, please see the gif file Horoscope.gif
+  * Примеры работы бота 
+  * Examples of how the bot works
   ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/1.png)
   ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/2.png)
   ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/3.png)

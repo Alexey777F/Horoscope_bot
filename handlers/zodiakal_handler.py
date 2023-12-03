@@ -2,8 +2,6 @@ from aiogram.types import CallbackQuery, Message
 from keyboard.keyboard import keyboard, menu_button
 from config.config import zodiaks, dates, dp, bot, menu, space_list
 from request.request import get_url, get_data, get_response
-# from photos_dark.photo_redactor import abs_path, image_redactor
-# import asyncio
 from keyboard.paginator import send_page
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -29,7 +27,7 @@ async def check_birthday(message: Message, state: FSMContext):
     if message.text == "/start":
         await state.finish()
         await message.answer("Узнайте что говорят звёзды и приготовила для Вас судьба✨💫🌟\n\n",
-                                  reply_markup=keyboard(1, menu, 6, space_list()))
+                             reply_markup=keyboard(1, menu, 6, space_list()))
     else:
         await message.reply("Выберите знак зодиака кнопкой 📱")
 
@@ -61,6 +59,7 @@ async def check_birthday(message: Message, state: FSMContext):
     else:
         await message.reply("Выберите дату кнопкой 📱")
 
+
 @dp.callback_query_handler(state=Zodiacal.date_name, text=["Сегодня 📆", "Завтра 📆", "Неделя 📆"])
 async def request_answer(call: CallbackQuery, state: FSMContext):
     """Колбек-хендлер который ловит кнопку из инлайн клавиатуры с выбором периода"""
@@ -79,8 +78,6 @@ async def request_answer(call: CallbackQuery, state: FSMContext):
         reply_markup=None
     )
     await call.message.answer(f"Вы выбрали {date.lower()}")
-    # вариант отправки отдельно картинки и отдельно текст
-    # показался мне более читабельным по сравнению со вторым
     # Отправляем картинку из папки
     await call.message.answer_photo(open(f"photos_light/{user_data['Знак зодиака']}.jpeg", "rb"))
     # Отправляем страницу текста с пагинацией
@@ -150,7 +147,7 @@ async def pagination_callback(call: CallbackQuery, state: FSMContext):
             user_data["Пагинация"] = page
         url = get_url("prediction", user_data["Знак зодиака"], user_data["Дата"])
         request = get_data(get_response(url))
-        request_filtred = "\n".join(request).replace("&ndash;", " ").replace("&nbsp;", " ").split("\n")
+        request_filtered = "\n".join(request).replace("&ndash;", " ").replace("&nbsp;", " ").split("\n")
         # Удаляет предыдущую страницу выдачи информации(страничка пагинации)
         # чтобы текст заменялся, а не присылался следующим сообщением
         await bot.delete_message(
@@ -158,7 +155,7 @@ async def pagination_callback(call: CallbackQuery, state: FSMContext):
             message_id=call.message.message_id
         )
         # Отправляем следующую страницу пагинации
-        await send_page(request_filtred, call.message, page)
+        await send_page(request_filtered, call.message, page)
         await call.answer()
     # Отлавливаем команду "Завершить просмотр", чтобы завершить машинное состояние в данном разделе
     # и чтобы мы могли переключиться на другой раздел

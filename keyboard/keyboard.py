@@ -11,7 +11,7 @@ def keyboard(row, name, number, text=None) -> InlineKeyboardMarkup:
 
 
 def menu_button() -> InlineKeyboardMarkup:
-    """Функция кнопки клаватуры меню"""
+    """Функция кнопки клавиатуры меню"""
     keyboard = InlineKeyboardMarkup()
     keyboard.add(InlineKeyboardButton("Перейти в главное меню 🌟", callback_data="Меню"))
     return keyboard

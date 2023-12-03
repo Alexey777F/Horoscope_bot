@@ -22,7 +22,25 @@
  ___
  * Create a telegram bot with BotFather and get a personal token.
 
-## Установка с помощью Docker-compose и asyncio - Install with Docker-compose and asyncio
+## Простой запуск - Simple start
+ * Необходимо скопировать все содержимое репозитория в отдельный каталог.
+ * Установите виртульное окружение на вашей ОС, на Mac OS python3 -m venv my_env
+ * Активируйте виртульаное окружение на вашей ОС, на Mac OS source my_env/bin/activate
+ * Установить все библиотеки из requirements.txt 
+ * Важно! Установить именно те версии которые указаны в requirements.txt иначе возможны ошибки при работе бота.
+ * Откройте файл .env и заполните токен.
+ * Запустите файл main.py
+ ___
+ * It is necessary to copy all important repositories to a separate directory.
+ * Install a virtual environment on your OS, on Mac OS python3 -m venv my_env
+ * Activate the virtual environment in your OS, in the Mac OS source my_env/bin/activate.
+ * Install all libraries from the requirements.txt file.
+ * Important! Install exactly the version specified in the require.txt file, otherwise errors may occur when the bot operates.
+ * Open the .env file and fill in token from bot.
+ * Run main.py.
+
+ 
+## Установка с помощью Docker-compose и asyncio(polling) - Install with Docker-compose and asyncio(polling)
  * Установите Docker Desktop под вашу ОС
  * Необходимо скопировать все содержимое репозитория в отдельный каталог.
  * Установите виртульное окружение на вашей ОС, на Mac OS python3 -m venv my_env
@@ -37,7 +55,7 @@
  * It is necessary to copy all important repositories to a separate directory.
  * Install a virtual environment on your OS, on Mac OS python3 -m venv my_env
  * Activate the virtual environment in your OS, in the Mac OS source my_env/bin/activate.
- * Install all libraries from the require.txt file.
+ * Install all libraries from the requirements.txt file.
  * Important! Install exactly the version specified in the require.txt file, otherwise errors may occur when the bot operates.
  * Open the .env file and fill in the reporting data.
  * Start building the image and creating the container using the docker-compose up --build command.

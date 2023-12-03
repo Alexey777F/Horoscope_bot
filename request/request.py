@@ -27,6 +27,7 @@ def get_data(get_response) -> List:
     logger = logging.getLogger(__name__)
     try:
         our_data_text = re.findall(r'<p>([^<]+)</p>', get_response)
+
         return our_data_text
     except KeyError as exc:
         logger.error(exc, exc_info=exc)

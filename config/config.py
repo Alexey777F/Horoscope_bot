@@ -4,7 +4,8 @@ from os import getenv
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
-bot_token = "6150164873:AAHr7sGYxOZTVnUTK4MFfdvsSuA22v55eus"
+
+bot_token = getenv("TG_TOKEN")
 bot = Bot(token=bot_token)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)

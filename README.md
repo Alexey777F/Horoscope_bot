@@ -1,4 +1,4 @@
- # Cosmo_bot
+ # Goroscope_bot
  ![horoscope_bot](https://github.com/Alexey777F/Horoscope_bot/blob/master/6.png)
  * Это интересный Гороскоп бот в котором есть несколько разделов, Зодиакальный, Китайсикй, Японский, 
    Гороскоп друидов и гороскоп Совместимости по знакам зодиака. 
